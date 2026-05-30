@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import VideoEmbed from "@/components/VideoEmbed";
+import HlsPlayer from "@/components/HlsPlayer";
 
 export const metadata: Metadata = {
   title: "Spacebirth 2 — Watch the Film",
@@ -13,9 +13,8 @@ export default function WatchPage() {
       </section>
 
       <section className="mb-[5%]">
-        <VideoEmbed
-          type="vimeo"
-          videoId="1146583889"
+        <HlsPlayer
+          src="https://vz-42c02503-371.b-cdn.net/8baf6539-c6fb-4ddc-8967-8a9cdcd26b66/playlist.m3u8"
           aspectRatio="42.33%"
           className="!rounded-none"
           noRounding

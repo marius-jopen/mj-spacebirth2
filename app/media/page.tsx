@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import VideoEmbed from "@/components/VideoEmbed";
+import HlsPlayer from "@/components/HlsPlayer";
 
 export const metadata: Metadata = {
   title: "Spacebirth 2 — Media",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 interface VideoSection {
   title: string;
   description: string;
-  type: "youtube" | "vimeo";
+  type: "youtube" | "vimeo" | "hls";
   videoId: string;
   aspectRatio?: string;
   link?: { href: string; text: string };
@@ -46,16 +47,18 @@ const videos: VideoSection[] = [
   {
     title: "onboarding I",
     description: "Onboarding video for our DOP,",
-    type: "vimeo" as const,
-    videoId: "1019127202",
+    type: "hls" as const,
+    videoId:
+      "https://vz-42c02503-371.b-cdn.net/4cd0bc7d-b398-4e2a-a3d2-010dc7ff6995/playlist.m3u8",
     aspectRatio: "56.34%",
     link: { href: "https://instagram.com/jamietouche/", text: "Jamie Touch" },
   },
   {
     title: "onboarding II",
     description: "An update video of the postproduction. Also for our DOP.",
-    type: "vimeo" as const,
-    videoId: "1019128936",
+    type: "hls" as const,
+    videoId:
+      "https://vz-42c02503-371.b-cdn.net/cb3e45ae-4804-4951-8547-3562218d2362/playlist.m3u8",
     aspectRatio: "56.34%",
   },
   {
@@ -97,7 +100,11 @@ export default function MediaPage() {
                 )}
               </p>
               <div className="video-embed-outline">
-                <VideoEmbed type={video.type} videoId={video.videoId} aspectRatio={video.aspectRatio} />
+                {video.type === "hls" ? (
+                  <HlsPlayer src={video.videoId} aspectRatio={video.aspectRatio} />
+                ) : (
+                  <VideoEmbed type={video.type} videoId={video.videoId} aspectRatio={video.aspectRatio} />
+                )}
               </div>
             </div>
           </div>
