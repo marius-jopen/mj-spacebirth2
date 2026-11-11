@@ -49,7 +49,7 @@ export default function GameEmbed() {
           }}
         >
           <iframe
-            src="https://spacebirth2game.netlify.app/"
+            src="https://game.spacebirth2.com/"
             scrolling="no"
             title="Spacebirth 2 Game"
             width={IFRAME_W}
